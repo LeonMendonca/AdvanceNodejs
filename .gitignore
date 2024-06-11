@@ -1,3 +1,4 @@
+cluster/simple.js
 node_modules/
 server/.env
 multithreading/.env
