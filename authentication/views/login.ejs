@@ -6,25 +6,33 @@
     <%- include('./bootstraps/passwordVis') -%>
   </head>
   <div class="container"> 
+    <div class="container"> 
+      <% if(result) { %>
+        <div class="alert alert-info" role="alert">
+          <%= result %>
+        </div>
+      <% } %>
+
+
     <h1 class="mb-3">Login</h1>
     <form method="POST" action="/login">
 
       <div class="mb-3">
-        <label for="uname" class="form-label">Username or Email</label>
-        <input type="text" class="form-control" id="uname" name="useremail" aria-describedby="form-text">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" name="email" value="<%= userData?.email %>" aria-describedby="form-text">
       </div>
       
       <div class="mb-3">
         <label for="password" class="form-label">Password</label>
         <div class="input-group">
-          <input type="password" class="form-control" id="password" name="password">
+          <input type="password" class="form-control" id="password" name="password" value="<%= userData?.password %>">
           <button type="button" class="btn btn-outline-secondary" id="togglePassword">Show</button>
         </div>
       </div>
 
       <div class="mb-3 form-check">
         <label class="form-check-label" for="rembox">Remember me</label>
-        <input type="checkbox" class="form-check-input" name="rememberme" id="rembox">
+        <input type="checkbox" class="form-check-input" name="rememberme" id="rembox" <%=(userData?.rememberme === 'on') ? 'checked' : ''%> >
       </div>
 
       <button type="submit" class="btn btn-primary">Submit</button>

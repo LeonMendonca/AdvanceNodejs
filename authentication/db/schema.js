@@ -5,11 +5,10 @@ const userSchema = new Schema({
   username: { type:String, trim:true },
   email: { type:String, unique:true, trim:true },
   password : { type:String },
-  rememberme : { type:String, default:'off' },
 }, { timestamps : true })
 
 
-//schema fucntions must be used before the model
+//schema functions must be used before the model
 userSchema.pre('save',async function(next){
   const saltRound = 10;
   const signInUser = this;
@@ -26,7 +25,13 @@ userSchema.pre('save',async function(next){
   }
 })
 
-userSchema.static('checkPassword',async function() {
+userSchema.static('checkPassword',async function(password,hashPass) {
+  try {
+    const bool = await bcrypt.compare(password,hashPass);
+    return bool;
+  } catch(error) {
+    throw error;
+  }
 })
 
 const userModel = model('users',userSchema);
