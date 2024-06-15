@@ -20,11 +20,12 @@ function fibonacci(n) {
   return fibonacci(n - 1) + fibonacci(n - 2);
 }
 
+
 app.get("/",async function (req,res) {
   console.log("you called..");
   const result = await createWorker()
-  console.log("got req");
   //const result = fibonacci(40);
+  console.log("got req");
   res.json({value:result});
 })
 

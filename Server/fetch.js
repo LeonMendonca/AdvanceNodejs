@@ -15,8 +15,11 @@ async function fetchData() {
 
 let promises = [];
 for (let i = 0; i < 6; i++) {
-    promises.push(fetchData());
+  //promises.push(fetchData());
+  fetchData();
 }
 
+/*
 const result = await Promise.all(promises);
 console.log(result);
+*/
